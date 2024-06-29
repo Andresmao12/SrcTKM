@@ -1,17 +1,14 @@
 import styles from "./EventsCont.module.css";
-import data from "../../data/events.json";
 import EventItem from "./components/EventItem/EventItem";
 
-function getData(searchValue) {
-  const { events } = data._embedded;
+function getData(searchValue, data) {
 
-  let eventsFilter = events;
-
+  let eventsFilter = data;
+  
   if (searchValue.length != 0) {
-    eventsFilter = events.filter((event) => {
+    eventsFilter = data.filter((event) => {
       return event.name.toUpperCase().includes(searchValue.toUpperCase());
     });
-    console.log(eventsFilter);
   }
 
   const elementData = eventsFilter.map((element) => {
@@ -20,7 +17,7 @@ function getData(searchValue) {
     return (
       <EventItem
         key={id}
-        id = {id}
+        id={id}
         url={images[0].url}
         name={name}
         info={info}
@@ -31,8 +28,9 @@ function getData(searchValue) {
   return elementData;
 }
 
-const EventsCont = ({ searchValue }) => {
-  return <div className={styles.eventsCont}>{getData(searchValue)}</div>;
+const EventsCont = ({ searchValue, events }) => {
+
+  return <div className={styles.eventsCont}>{getData(searchValue, events)}</div>;
 };
 
 export default EventsCont;

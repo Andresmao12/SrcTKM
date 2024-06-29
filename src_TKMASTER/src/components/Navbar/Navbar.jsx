@@ -1,5 +1,4 @@
 import styles from "./Navbar.module.css";
-import { useState } from "react";
 
 const Navbar = ({ handleSearchValue }) => {
   const handleSearch = (evt) => {
