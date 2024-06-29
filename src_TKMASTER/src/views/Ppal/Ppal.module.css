@@ -1,0 +1,9 @@
+.AppCont {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px; 
+  padding: 10px;
+  overflow: hidden;
+}

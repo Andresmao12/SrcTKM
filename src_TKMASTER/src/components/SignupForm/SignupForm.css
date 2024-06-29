@@ -1,0 +1,47 @@
+.formSing {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 5px;
+
+  background-color: #222;
+  color: #fff;
+  padding: 10px 12px;
+
+  width: 60vw;
+  height: 60vh;
+}
+
+.formSing label {
+  width: 100%;
+}
+
+.formSing input {
+  width: 100%;
+  height: 50%;
+  padding: 0 5px;
+}
+
+.formSing div {
+  display: flex;
+  gap: 8px;
+}
+
+.formSing div button {
+  padding: 4px 8px;
+  border-radius: 2px;
+  background-color: #001;
+  color: #fff;
+  transition: 300ms;
+
+}
+
+.formSing div button:hover {
+    background-color: #fff;
+    box-shadow:  0 0 12px -5px #fff;
+    color: #001;
+    font-weight: 700;
+    transition: 300ms;
+}
+

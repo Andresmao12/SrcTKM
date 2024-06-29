@@ -1,0 +1,50 @@
+.NavbarCont {
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* position: sticky;
+  padding: 5px 0;
+  top: 0; */
+}
+
+.navbarSpan{
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  flex-grow: .8;
+}
+
+.inpCont{
+  position: relative;
+  min-width: 200px;
+}
+
+.labelSearch {
+  position: absolute;
+  color: #fff;
+  top: 2px;
+  left: 7px;
+  cursor: text;
+  transition: 300ms;
+}
+
+.inpSearch {
+  padding: 4px 8px;
+  width: 100%;
+  background-color: #000;
+  border: 1px solid #fff;
+  color: #fff;
+  font-family: system-ui;
+}
+
+.inpSearch::selection {
+  background-color: #fff;
+  color: #000;
+}
+
+.inpSearch:focus + .labelSearch,
+.inpSearch:not(:placeholder-shown) + .labelSearch {
+  left: -55px;
+  transition: 300ms;
+}
