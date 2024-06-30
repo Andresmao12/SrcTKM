@@ -3,6 +3,7 @@ import { useState } from "react";
 const useEventsData = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true)
+  const [errorFetch, setErrorFetch] = useState(false)
 
   const getData = async (param) => {
     try {
@@ -16,13 +17,14 @@ const useEventsData = () => {
       setLoading(false)
     } catch (error) {
       console.log("Error in fetch: ", error);
+      setErrorFetch(true)
     }
   };
 
   return {
     events,
     getData,
-    loading
+    loading, errorFetch
   };
 };
 

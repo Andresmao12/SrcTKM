@@ -7,7 +7,7 @@ import useEventsData from "../../Hooks/useEventData";
 
 const Ppal = () => {
   const [searchValue, setSearchValue] = useState("");
-  const { events, getData, loading } = useEventsData();
+  const { events, getData, loading, errorFetch } = useEventsData();
 
   useEffect(() => {
     getData();
@@ -22,10 +22,11 @@ const Ppal = () => {
     <div className={styles.AppCont}>
       <Navbar handleSearchValue={handleSearchValue} />
       {loading ? (
-        <div className={styles.loading}>Loading...</div>
+        <div className={styles.message}>Loading...</div>
       ) : (
         <EventsCont searchValue={searchValue} events={events} />
       )}
+      {errorFetch && <div className={styles.message}>Not found</div>}
     </div>
   );
 };
