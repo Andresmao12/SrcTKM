@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const useEventsData = () => {
   const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true)
 
   const getData = async (param) => {
     try {
@@ -12,6 +13,7 @@ const useEventsData = () => {
       );
       const data = await res.json();
       setEvents(data._embedded.events);
+      setLoading(false)
     } catch (error) {
       console.log("Error in fetch: ", error);
     }
@@ -20,6 +22,7 @@ const useEventsData = () => {
   return {
     events,
     getData,
+    loading
   };
 };
 
