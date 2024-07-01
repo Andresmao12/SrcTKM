@@ -4,7 +4,6 @@ import { useRouteError } from 'react-router-dom';
 const Error404 = ()=>{
 
     const errorMessage = useRouteError()
-    console.log(errorMessage);
 
     return <>
         <h1 className={style.title}>Sorry!</h1>
