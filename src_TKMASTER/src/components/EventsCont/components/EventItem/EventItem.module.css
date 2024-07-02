@@ -7,12 +7,34 @@
   gap: 10px;
   overflow: hidden;
   padding: 8px 4px;
+
+}
+
+.heart, .solidHeart{
+  position: absolute;
+  font-size: 20px;
+  top: 8px;
+  left: 8px;
+  cursor: pointer;
+}
+
+.solidHeart{
+  color: red;
+}
+
+.heart:hover, .solidHeart:hover{
+  color: #f00;
+  transform: scale(1.2);
+  transition: 300ms;
 }
 
 .eventItem_img {
   width: 20%;
+  min-width: 100px;
   background-size: cover;
   background-position: center;
+  
+  position: relative;
 }
 
 .eventItem_info {
