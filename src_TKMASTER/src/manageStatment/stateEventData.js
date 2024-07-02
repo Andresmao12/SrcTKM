@@ -5,6 +5,12 @@ const useEventDataStore = create((set) => ({
   isLoading: true,
   errorFethc: null,
   getData: async (param) => {
+    set(() => ({
+      data: [],
+      isLoading: true,
+      errorFetch: null,
+    }));
+    
     try {
       const res = await fetch(
         `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${
@@ -12,19 +18,26 @@ const useEventDataStore = create((set) => ({
         }&countryCode=MX${param?.length ? param : ""}`
       );
       const data = await res.json();
-      await set(() => ({ data }));
+      set(() => ({ data }));
 
       console.log("Se ejecuto el fetch");
     } catch (error) {
-      await set(() => ({ error }));
+      set(() => ({ error }));
     } finally {
-      await set(() => ({ isLoading: false }));
+      set(() => ({ isLoading: false }));
     }
   },
   dataDetail: [],
   isLoadingDetail: true,
   errorFethcDetail: null,
   getDataDetail: async (eventId) => {
+    //Se restablecen ya que se estaban mostrando los datos anteriores antes de los nuevos
+    set(() => ({
+      dataDetail: [],
+      isLoadingDetail: true,
+      errorFetchDetail: null,
+    }));
+
     try {
       const res = await fetch(
         `https://app.ticketmaster.com/discovery/v2/events/${eventId}?apikey=${

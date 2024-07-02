@@ -28,13 +28,15 @@ const Ppal = () => {
   };
 
   const EventsPages = () => {
-    if (errorFetch) {
+
+    if (isLoading && !events) {
+      return <div className={styles.message}>Loading...</div>;
+    }
+
+    if (errorFetch || !events) {
       return <div className={styles.message}>Not found</div>;
     }
 
-    if (isLoading) {
-      return <div className={styles.message}>Loading...</div>;
-    }
 
     return (
       <div className={styles.evt_pagCont}>
