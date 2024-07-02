@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-const apiKey = "bgqKyNi7dq2AuiuGLRXv0EDFbfITNauf";
+const apiKey = import.meta.env.VITE_TICKETMASTER_API_KEY;
 
 const useEventsData = () => {
   const [dataFetch, setDataFetch] = useState({});
@@ -16,8 +16,8 @@ const useEventsData = () => {
         }`
       );
       const data = await res.json();
-      console.log('data luego del fetch: ', data);
       setDataFetch(data);
+      console.log('Se ejecuto el fetch');
     } catch (error) {
       console.log("Error in fetch: ", error);
       setErrorFetch(true);
@@ -30,7 +30,7 @@ const useEventsData = () => {
     if (dataFetch._embedded && dataFetch.page) {
       setEvents(dataFetch._embedded.events);
       setPages(dataFetch.page.totalPages);
-      console.log('se ejecuto el useEfect en hook')
+      console.log("Se actualizaron los datos en el hook");
     }
   }, [dataFetch]);
 

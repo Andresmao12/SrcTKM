@@ -13,7 +13,7 @@ const EventItem = ({ url, name, info, id }) => {
       <div
         style={{ backgroundImage: `url(${url})` }}
         className={styles.eventItem_img}
-      ></div>
+      >{true ? <i className="fa-regular fa-heart"></i> : <i className="fa-solid fa-heart"></i>}</div>
       {/* <img src={url} alt={name} className={styles.eventItem_img} /> */}
       <div className={styles.eventItem_info}>
         <h2 className={styles.info_title}>{name}</h2>

@@ -1,52 +1,40 @@
-import { Navigate, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import styles from "./Detail.module.css";
+import stateEventData from "../../manageStatment/stateEventData";
 
 const Detail = () => {
   const { eventId } = useParams();
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const { getDataDetail, dataDetail, isLoadingDetail, errorFetchDetail } =
+    stateEventData();
+  const data = dataDetail;
+
   const navigate = useNavigate();
 
-  const [mouseEnter, setMouseEnter] = useState(false)
+  const [mouseEnter, setMouseEnter] = useState(false);
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const res = await fetch(
-          `https://app.ticketmaster.com/discovery/v2/events/${eventId}?apikey=bgqKyNi7dq2AuiuGLRXv0EDFbfITNauf`
-        );
-        const data = await res.json();
-        console.log(data);
-        setData(data);
-        setLoading(false);
-      } catch (e) {
-        setError(e);
-      }
-    };
-    getData();
+    getDataDetail(eventId);
   }, []);
 
   const handleBtnClose = () => {
     navigate("/");
   };
 
-  const handleMouseEnter = ()=>{
-    setMouseEnter(!mouseEnter)
-  }
+  const handleMouseEnter = () => {
+    setMouseEnter(!mouseEnter);
+  };
 
-  const handleClickShop = ()=>{
+  const handleClickShop = () => {
     window.location.href = data.url;
-  }
+  };
 
-  if (error) {
+  if (errorFetchDetail) {
     return <div className={styles.message}>Sory! An error in details</div>;
   }
-  if (loading) {
+  if (isLoadingDetail) {
     return <div className={styles.message}>Loading...</div>;
   }
 
@@ -85,7 +73,14 @@ const Detail = () => {
               <p>{data.pleaseNote}</p>
             </div>
 
-            <button onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseEnter} className={mouseEnter ? styles.mouseEnter : ''} onClick={handleClickShop}>Compra tus boletas</button>
+            <button
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseEnter}
+              className={mouseEnter ? styles.mouseEnter : ""}
+              onClick={handleClickShop}
+            >
+              Compra tus boletas
+            </button>
           </div>
         </div>
       </section>

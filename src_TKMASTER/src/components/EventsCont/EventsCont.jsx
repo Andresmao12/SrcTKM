@@ -10,7 +10,7 @@ function getData(searchValue, data) {
       return event.name.toUpperCase().includes(searchValue.toUpperCase());
     });
   }
-  console.log('filtered elements: ', eventsFilter)
+  console.log('Filtered elements: ', eventsFilter)
 
   const elementData = eventsFilter.map((element) => {
     const { name, info, images, id } = element;
