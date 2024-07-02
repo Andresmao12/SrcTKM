@@ -1,0 +1,120 @@
+.message {
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: #fff;
+}
+
+.banner {
+  width: 100vw;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 10px;
+
+  background-position: center;
+  background-size: cover;
+
+  position: relative;
+}
+
+.banner::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: #0006;
+}
+
+.banner :is(h2, span) {
+  color: #fff;
+  z-index: 10;
+}
+
+.banner button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  padding: 4px 10px;
+  border-radius: 2px;
+  font-weight: 600;
+  z-index: 20;
+}
+.banner button:hover {
+  color: #fff;
+  background-color: #b00;
+}
+
+.detailsCont {
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.img_priceCont {
+  width: 100%;
+  display: flex;
+  gap: 15px;
+}
+
+.detailsCont img {
+  min-width: 40vw;
+  height: min-content;
+  align-self: center;
+  object-fit: cover;
+  object-position: center;
+}
+
+.priceDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.priceDetails button {
+  width: max-content;
+  padding: 10px 20px;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+
+}
+
+.priceDetails button:hover {
+  color: #fff;
+  background-color: #001;
+}
+
+
+.priceDetails button::after{
+    content: 'Ir a TicketMaster';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 100vw;
+    background-color: #00f;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+    transition: 300ms;
+}
+
+.mouseEnter::after{
+    left: 0 !important;
+    z-index: 10;
+    transition: 300ms;
+}

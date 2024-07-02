@@ -3,12 +3,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px; 
+  gap: 15px;
   padding: 10px;
   overflow: hidden;
 }
 
-.message{
+.message {
   color: #fff;
   font-size: 30px;
   font-weight: 700;
@@ -18,4 +18,50 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.evt_pagCont {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.pgContainer {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.pgNext,
+.pgPrevious,
+.pgItem,
+.pgPoints {
+  color: #fff;
+  font-weight: 500;
+  padding: 3px 6px;
+  border-radius: 20px;
+  cursor: pointer;
+
+  &:hover {
+    color: #001;
+  }
+}
+
+.pgActive {
+  background-color: #001;
+}
+.pgActive:hover {
+  background-color: #fff;
+  color: #001;
+  transition: 300ms;
+}
+
+.disabled {
+  cursor: not-allowed;
+
+  &:hover {
+    background-color: #eee;
+  }
 }

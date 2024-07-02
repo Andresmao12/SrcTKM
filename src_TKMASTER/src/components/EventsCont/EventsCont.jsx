@@ -4,7 +4,6 @@ import EventItem from "./components/EventItem/EventItem";
 function getData(searchValue, data) {
   let eventsFilter = data;
 
-  console.log("Data desde contenedor", data);
 
   if (searchValue.length != 0) {
     eventsFilter = data.filter((event) => {
@@ -26,7 +25,6 @@ function getData(searchValue, data) {
       ></EventItem>
     );
   });
-  console.log('ElementData: ',elementData)
   return elementData;
 }
 

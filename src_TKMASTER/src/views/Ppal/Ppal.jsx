@@ -8,22 +8,24 @@ import useEventsData from "../../Hooks/useEventData";
 
 const Ppal = () => {
   const [searchValue, setSearchValue] = useState("");
+  const [pageActive, setPageActive] = useState(0);
   const { events, getData, loading, errorFetch, pages } = useEventsData();
 
   useEffect(() => {
-    getData();
-  }, []);
+    getData(`&keyword=${searchValue}&page=${pageActive}`);
+  }, [searchValue, pageActive]);
 
   const handleSearchValue = (term) => {
     setSearchValue(term);
+    setPageActive(0)
   };
 
-  // const handlePageClick = (selected) => {
-  //   getData(`&keyword=${term}`);
-  // };
+  const handlePageClick = ({ selected }) => {
+    setPageActive(selected)
+    console.log(selected);
+  };
 
   const EventsPages = () => {
-
     if (errorFetch) {
       return <div className={styles.message}>Not found</div>;
     }
@@ -33,17 +35,25 @@ const Ppal = () => {
     }
 
     return (
-      <div>
+      <div className={styles.evt_pagCont}>
         <EventsCont searchValue={searchValue} events={events} />
-        {/* <ReactPaginate
+        <ReactPaginate
+        disabledClassName={styles.disabled}
+          className={styles.pgContainer}
+          pageClassName={styles.pgItem}
+          nextClassName={styles.pgNext}
+          previousClassName={styles.pgPrevious}
+          breakClassName={styles.pgPoints}
+          activeClassName={styles.pgActive}
           breakLabel="..."
           nextLabel=">"
           onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
+          pageRangeDisplayed={3}
           pageCount={pages}
           previousLabel="<"
+          forcePage={pageActive}
           renderOnZeroPageCount={null}
-        /> */}
+        />
       </div>
     );
   };
