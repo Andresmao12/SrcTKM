@@ -1,20 +1,36 @@
 import Navbar from "../../components/Navbar/Navbar";
 import EventsCont from "../../components/EventsCont/EventsCont";
 import styles from "./Ppal.module.css";
-import ReactPaginate from "react-paginate";
-
-import { useState, useEffect } from "react";
 import useStateEventsResult from "../../manageStatment/stateEventData";
+
+import ReactPaginate from "react-paginate";
+import { useState, useEffect } from "react";
 
 const Ppal = () => {
   const [searchValue, setSearchValue] = useState("");
   const [pageActive, setPageActive] = useState(0);
   const { data, isLoading, errorFetch, getData } = useStateEventsResult();
   const events = data?._embedded?.events;
-  const pages = data?.page
+  const pages = data?.page;
+  const [dataFiltered, setDataFiltered] = useState(events);
 
   useEffect(() => {
-    getData(`&keyword=${searchValue}&page=${pageActive}`);
+    getData();
+  }, []);
+
+  useEffect(() => {
+    setDataFiltered(events);
+  }, [events]);
+
+  useEffect(() => {
+    getData(`&page=${pageActive}`);
+    let eventsFilter = events;
+    if (searchValue?.length != 0) {
+      eventsFilter = events.filter((event) => {
+        return event.name.toUpperCase().includes(searchValue.toUpperCase());
+      });
+    }
+    setDataFiltered(eventsFilter);
   }, [searchValue, pageActive]);
 
   const handleSearchValue = (term) => {
@@ -24,11 +40,9 @@ const Ppal = () => {
 
   const handlePageClick = ({ selected }) => {
     setPageActive(selected);
-    console.log(selected);
   };
 
   const EventsPages = () => {
-
     if (isLoading && !events) {
       return <div className={styles.message}>Loading...</div>;
     }
@@ -37,10 +51,9 @@ const Ppal = () => {
       return <div className={styles.message}>Not found</div>;
     }
 
-
     return (
       <div className={styles.evt_pagCont}>
-        <EventsCont searchValue={searchValue} events={events} />
+        <EventsCont events={dataFiltered} />
         <ReactPaginate
           disabledClassName={styles.disabled}
           className={styles.pgContainer}

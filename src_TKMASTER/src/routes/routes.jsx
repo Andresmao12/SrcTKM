@@ -3,7 +3,9 @@ import Ppal from "../views/Ppal/Ppal";
 import Detail from "../views/Details/Detail";
 import Error404 from "../views/Error/Error404";
 
-import Profile from '../views/Profile/Profile'
+import Profile from "../views/Profile/Profile";
+import Info from "../views/Profile/components/Info/Info";
+import LikedEvents from "../views/Profile/components/LikedEvents/LikedEvents";
 
 const router = createBrowserRouter([
   {
@@ -26,11 +28,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "account",
-        element: <div>account</div>,
+        element: <Info />,
       },
       {
         path: "liked-events",
-        element: <div>liked events</div>,
+        element: <LikedEvents />,
       },
     ],
   },

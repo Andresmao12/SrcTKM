@@ -3,13 +3,8 @@ import { create } from "zustand";
 const useEventDataStore = create((set) => ({
   data: [],
   isLoading: true,
-  errorFethc: null,
-  getData: async (param) => {
-    set(() => ({
-      data: [],
-      isLoading: true,
-      errorFetch: null,
-    }));
+  errorFetch: null,
+  getData: async (param) => {    
     
     try {
       const res = await fetch(

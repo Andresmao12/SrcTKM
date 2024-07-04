@@ -61,11 +61,14 @@
 .eventItem_btn {
   padding: 5px;
   max-width: 150px;
+  color: #fff;
+  background-color: #111;
+  border-radius: 2px;
   transition: 300ms;
 }
 .eventItem_btn:hover {
-  background-color: #000;
-  color: #fff;
+  background-color: #fff;
+  color: #001;
   box-shadow: 0 0 10px -4px #fff;
   transition: 300ms;
 }

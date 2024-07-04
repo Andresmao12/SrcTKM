@@ -1,0 +1,15 @@
+.likedCont {
+  padding: 20px;
+  width: 80vw;
+  border: 1px solid #fff;
+  text-align: initial;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.message{
+    color: #fff;
+    width: 100px;
+    height: 100px;
+}

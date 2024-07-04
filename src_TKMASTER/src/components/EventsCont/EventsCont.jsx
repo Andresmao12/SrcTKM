@@ -1,17 +1,10 @@
 import styles from "./EventsCont.module.css";
 import EventItem from "./components/EventItem/EventItem";
 
-function getData(searchValue, data) {
-  let eventsFilter = data;
+function getData(data) {  
+  console.log(data)
 
-  if (searchValue.length != 0) {
-    eventsFilter = data.filter((event) => {
-      return event.name.toUpperCase().includes(searchValue.toUpperCase());
-    });
-  }
-  console.log("Filtered elements: ", eventsFilter);
-
-  const elementData = eventsFilter.map((element) => {
+  const elementData = data?.map((element) => {
     const { name, info, images, id } = element;
 
     return (
@@ -27,9 +20,10 @@ function getData(searchValue, data) {
   return elementData;
 }
 
-const EventsCont = ({ searchValue, events }) => {
+
+const EventsCont = ({ events }) => {
   return (
-    <div className={styles.eventsCont}>{getData(searchValue, events)}</div>
+    <div className={styles.eventsCont}>{getData(events)}</div>
   );
 };
 

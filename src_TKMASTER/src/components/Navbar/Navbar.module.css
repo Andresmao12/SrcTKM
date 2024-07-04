@@ -8,14 +8,14 @@
   top: 0; */
 }
 
-.navbarSpan{
+.navbarSpan {
   font-size: 18px;
   font-weight: 600;
   color: #fff;
-  flex-grow: .8;
+  flex-grow: 0.8;
 }
 
-.inpCont{
+.inpCont {
   position: relative;
   min-width: 200px;
 }
@@ -47,4 +47,19 @@
 .inpSearch:not(:placeholder-shown) + .labelSearch {
   left: -55px;
   transition: 300ms;
+}
+
+.btnProfile {
+  padding: 4px 10px;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #001;
+  transition: 100ms;
+}
+
+.btnProfile:hover {
+  background-color: #fff;
+  color: #001;
+  box-shadow: 0 0 10px -4px #fff;
+  transition: 100ms;
 }
