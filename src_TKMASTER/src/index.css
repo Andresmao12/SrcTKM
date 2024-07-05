@@ -24,4 +24,8 @@ input, button{
 
 button{
   cursor: pointer;
+  background-color: #111;
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 2px;
 }

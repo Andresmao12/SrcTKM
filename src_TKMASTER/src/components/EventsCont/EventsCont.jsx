@@ -1,8 +1,9 @@
 import styles from "./EventsCont.module.css";
 import EventItem from "./components/EventItem/EventItem";
+import { memo } from "react";
 
-function getData(data) {  
-  console.log(data)
+function getData(data) {
+  console.log(data);
 
   const elementData = data?.map((element) => {
     const { name, info, images, id } = element;
@@ -20,11 +21,10 @@ function getData(data) {
   return elementData;
 }
 
-
 const EventsCont = ({ events }) => {
-  return (
-    <div className={styles.eventsCont}>{getData(events)}</div>
-  );
+  console.log("Se rendereo eventsCont");
+
+  return <div className={styles.eventsCont}>{getData(events)}</div>;
 };
 
-export default EventsCont;
+export default memo(EventsCont);

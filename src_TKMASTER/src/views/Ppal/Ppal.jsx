@@ -10,20 +10,26 @@ const Ppal = () => {
   const [searchValue, setSearchValue] = useState("");
   const [pageActive, setPageActive] = useState(0);
   const { data, isLoading, errorFetch, getData } = useStateEventsResult();
-  const events = data?._embedded?.events;
+  let events;
+  if (events !== data) {
+    events = data?._embedded?.events;
+  }
   const pages = data?.page;
   const [dataFiltered, setDataFiltered] = useState(events);
 
-  useEffect(() => {
-    getData();
-  }, []);
+  //PROBAMOS MEMOIZATION
+  const [isTogleBtn, setIsTogleBtn] = useState(false);
+  const handleTogle = () => {
+    setIsTogleBtn(!isTogleBtn);
+  };
 
   useEffect(() => {
     setDataFiltered(events);
+    console.log(data);
   }, [events]);
 
   useEffect(() => {
-    getData(`&page=${pageActive}`);
+    getData(`&page=${pageActive}&keyword=${searchValue}`);
     let eventsFilter = events;
     if (searchValue?.length != 0) {
       eventsFilter = events.filter((event) => {
@@ -31,7 +37,18 @@ const Ppal = () => {
       });
     }
     setDataFiltered(eventsFilter);
-  }, [searchValue, pageActive]);
+  }, [pageActive]);
+
+  useEffect(() => {
+    getData(`&keyword=${searchValue}`);
+    let eventsFilter = events;
+    if (searchValue?.length != 0) {
+      eventsFilter = events.filter((event) => {
+        return event.name.toUpperCase().includes(searchValue.toUpperCase());
+      });
+    }
+    setDataFiltered(eventsFilter);
+  }, [searchValue]);
 
   const handleSearchValue = (term) => {
     setSearchValue(term);
@@ -53,6 +70,9 @@ const Ppal = () => {
 
     return (
       <div className={styles.evt_pagCont}>
+        {/* <button onClick={handleTogle}>
+        Try memo: {isTogleBtn ? "on" : "off"}
+      </button> */}
         <EventsCont events={dataFiltered} />
         <ReactPaginate
           disabledClassName={styles.disabled}
@@ -78,6 +98,9 @@ const Ppal = () => {
   return (
     <div className={styles.AppCont}>
       <Navbar handleSearchValue={handleSearchValue} />
+      <button onClick={handleTogle}>
+        Try memo: {isTogleBtn ? "on" : "off"}
+      </button>
       <EventsPages />
     </div>
   );
