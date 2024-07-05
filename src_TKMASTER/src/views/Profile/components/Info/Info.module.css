@@ -1,16 +1,19 @@
 .infoContainer {
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.form {
-  border: 1px solid #fff;
 
+.form {
+  min-width: 50%;
+  border: 1px solid #fff;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   align-items: center;
-  padding: 20px;
+  padding: 20px 40px;
 }
 
 .label {
@@ -19,32 +22,90 @@
   color: #fff;
   text-align: left;
   gap: 2px;
+
+  position: relative;
 }
 
 .label,
 .btnSave {
-  width: 40%;
+  width: 50%;
+  min-width: 300px;
   max-width: 400px;
 }
 
-.input{
-    width: 100%;
-    padding: 3px 6px;
+.input {
+  width: 100%;
+  padding: 3px 6px;
 }
 
-.btnSave{
-    padding: 5px 12px;
-    color: #fff;
-    background-color: #111;
-    border-radius: 2px;
-    transition: 300ms;
+.btnSave {
+  padding: 5px 12px;
+  color: #fff;
+  background-color: #111;
+  border-radius: 2px;
+  transition: 300ms;
+
+  position: relative;
 }
-
-
 
 .btnSave:hover {
-    background-color: #eee;
-    color: #001;
-    box-shadow: 0 0 10px -4px #fff;
-    transition: 300ms;
+  background-color: #eee;
+  color: #001;
+  box-shadow: 0 0 10px -4px #fff;
+  transition: 300ms;
+}
+
+.messageError {
+  color: #f00;
+  font-size: 12px;
+  position: absolute;
+  width: max-content;
+  bottom: -15px;
+  right: 1px;
+}
+
+.success {
+  color: #0f0;
+  position: absolute;
+  width: max-content;
+  bottom: -17px;
+  left: 2px;
+
+  animation: userUpdate both ease-out 5s;
+}
+
+@keyframes userUpdate {
+  0% {
+    text-shadow: 0 0 10px #0f0;
   }
+  10% {
+    text-shadow: 0 0 2px #0f0;
+  }
+  20% {
+    text-shadow: 0 0 10px #0f0;
+  }
+  30% {
+    text-shadow: 0 0 2px #0f0;
+  }
+  40% {
+    text-shadow: 0 0 10px #0f0;
+  }
+  50% {
+    text-shadow: 0 0 2px #0f0;
+  }
+  60% {
+    text-shadow: 0 0 10px #0f0;
+  }
+  70% {
+    text-shadow: 0 0 2px #0f0;
+  }
+  80% {
+    text-shadow: 0 0 10px #0f0;
+  }
+  90% {
+    text-shadow: 0 0 2px #0f0;
+  }
+  100% {
+    text-shadow: 0 0 10px #0f0;
+  }
+}
